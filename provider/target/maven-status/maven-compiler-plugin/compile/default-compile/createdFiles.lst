@@ -1,0 +1,14 @@
+com\ghrk\provider\service\impl\CaptchaServiceImpl.class
+com\ghrk\provider\config\KaptchaConfig.class
+com\ghrk\provider\service\impl\UserAuthServiceImpl.class
+com\ghrk\provider\filter\DubboExceptionFilter.class
+com\ghrk\provider\ProviderApplication.class
+com\ghrk\provider\config\ApolloConfig.class
+com\ghrk\provider\dao\CaptchaDao.class
+com\ghrk\provider\config\MybatisPlusConfig.class
+com\ghrk\provider\utils\JwtUtils.class
+com\ghrk\provider\dao\UserInfoDao.class
+com\ghrk\provider\service\impl\ApolloServiceImpl.class
+com\ghrk\provider\dao\UserAuthDao.class
+com\ghrk\provider\service\impl\UserInfoServiceImpl.class
+com\ghrk\provider\filter\CustomValidationFilter.class

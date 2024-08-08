@@ -1,0 +1,2 @@
+dubboExceptionFilter=com.ghrk.provider.filter.DubboExceptionFilter
+customValidationFilter=com.ghrk.provider.filter.CustomValidationFilter

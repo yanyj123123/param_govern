@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ghrk.provider.dao.UserAuthDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.ghrk.common.entity.UserAuthEntity" id="userAuthMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="authId" column="auth_id"/>
+        <result property="authStatus" column="auth_status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="operatorId" column="operator_id"/>
+        <result property="operation" column="operation"/>
+    </resultMap>
+
+
+    <insert id="saveAuth">
+        insert into user_auth(user_id, auth_id, auth_status, operator_id, operation)
+        values (#{userId}, #{authId}, 1, #{operatorId}, 0)
+    </insert>
+
+    <!--<resultMap id="userAuthDtoMap" type="com.ghrk.common.dto.UserAuthDto">-->
+    <!--    <result column="user_id" property="userId"></result>-->
+    <!--    <result column="user_name" property="userName"></result>-->
+    <!--    <collection property="auths" ofType="java.lang.Integer" javaType="java.util.ArrayList">-->
+    <!--        <constructor>-->
+    <!--            <arg column="auth_id"></arg>-->
+    <!--        </constructor>-->
+    <!--    </collection>-->
+    <!--</resultMap>-->
+
+    <update id="deleteAuth" parameterType="com.ghrk.common.form.DeleteAuthForm">
+        update user_auth
+        set auth_status=0, operator_id=#{operatorId}, operation=1
+        where user_id=#{userId} and auth_id=#{authId}
+    </update>
+
+    <update id="updateAuth" parameterType="com.ghrk.common.form.UpdateAuthForm">
+        update user_auth
+        set auth_id=#{authId}, operator_id=#{operatorId}, operation=2
+        where user_id=#{userId} and auth_id=#{oldAuth}
+    </update>
+    <update id="updateAuthStatus">
+        update user_auth
+        set auth_status=#{status}, operator_id=#{operatorId}, operation=2
+        where user_id=#{userId} and auth_id=#{authId}
+    </update>
+
+    <select id="getUserAuthList" resultType="java.lang.Integer">
+        select auth_id
+        from user_auth
+        where user_id = #{userId} and auth_status=1
+    </select>
+
+
+    <select id="getUserAuth" resultType="com.ghrk.common.dto.UserAuthDto">
+        select ui.user_id, ui.user_name, ua.auth_id, ua.update_time
+        from user_info ui
+                 left join user_auth ua on ui.user_id = ua.user_id and ua.auth_status = 1
+        where ui.user_id=#{userId}
+    </select>
+    <select id="getUserIdAndAuthIdAndStatus" resultType="com.ghrk.common.dto.UserAuthDto">
+        select user_id, auth_id, auth_status
+        from user_auth
+        where user_id=#{userId} and auth_id=#{authId}
+    </select>
+    <select id="getUserAuthPage" resultType="com.ghrk.common.dto.UserAuthDto">
+        select ui.user_id, ui.user_name, ua.auth_id, ua.update_time
+        from user_info ui
+                 left join user_auth ua on ui.user_id = ua.user_id
+        where ua.auth_status = 1
+        <if test="userId != null">
+            and ua.user_id=#{userId}
+        </if>
+        <if test="authId != null">
+            and ua.auth_id=#{authId}
+        </if>
+    </select>
+
+
+</mapper>
