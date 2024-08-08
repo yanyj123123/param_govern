@@ -1,0 +1,13 @@
+com\ghrk\consumer\controller\UserInfoController.class
+com\ghrk\consumer\controller\UserAuthController.class
+com\ghrk\consumer\config\JacksonConfiguration$LongJsonDeserializer.class
+com\ghrk\consumer\interceptor\LoginInterceptor.class
+com\ghrk\consumer\controller\ApolloController.class
+com\ghrk\consumer\config\JacksonConfiguration$IntegerJsonDeserializer.class
+com\ghrk\consumer\config\WebMvcConfig.class
+com\ghrk\consumer\config\CorsConfig.class
+com\ghrk\consumer\controller\LoginController.class
+com\ghrk\consumer\form\LoginForm.class
+com\ghrk\consumer\config\JacksonConfiguration.class
+com\ghrk\consumer\exception\GlobalExceptionHandler.class
+com\ghrk\consumer\ConsumerApplication.class

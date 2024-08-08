@@ -1,0 +1,28 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /ghrk
+dubbo:
+  consumer:
+    timeout: 300000
+    validation: true
+    filter: dubboLogFilter
+  registry:
+    address: zookeeper://127.0.0.1:2181
+    timeout: 2000
+  application:
+    name: consumer
+    qos-enable: true # 是否开启QOS
+    qos-port: 33333 # QOS端口
+    qos-accept-foreign-ip: false # 是否允许QOS请求
+    serialize-check-status: DISABLE
+    check-serializable: false
+logging:
+  config: classpath:./logback-spring.xml  #日志相对路径
+    #level:
+    #root: info #日志级别 root表示所有包，也可以单独配置具体包 fatal>error>warn>info>debug>trace>off
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  type-aliases-package: com.ghrk.paramgovernance.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
