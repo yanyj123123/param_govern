@@ -12,6 +12,7 @@ import com.ghrk.common.utils.Query;
 import com.ghrk.provider.dao.UserInfoDao;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -23,6 +24,9 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfoEntity
 
     @Autowired
     private UserInfoDao userInfoDao;
+
+    @Value("${global.userAuth.limitPageValue}")
+    private String limitPageValue;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {

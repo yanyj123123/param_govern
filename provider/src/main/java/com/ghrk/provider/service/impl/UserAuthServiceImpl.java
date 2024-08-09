@@ -18,6 +18,7 @@ import com.ghrk.provider.dao.UserAuthDao;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +35,9 @@ public class UserAuthServiceImpl extends ServiceImpl<UserAuthDao, UserAuthEntity
 
     @DubboReference
     private ApolloService apolloService;
+
+    @Value("${global.userAuth.limitPageValue}")
+    private String limitPageValue;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
