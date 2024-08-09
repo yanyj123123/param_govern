@@ -14,8 +14,13 @@ public class ApolloServiceImpl implements ApolloService {
 
 
     // 菜单权限映射
-    @Value("${MenuAuth}")
+    @Value("${global.userinfo.city}")
+    private String city;
+    @Value("${global.authinfo.PermissionDict}")
+    private String permissionDict;
+    @Value("${global.authinfo.MenuAuth}")
     private String menuAuth;
+
 
     @Override
     public String getMenuAuth() {
