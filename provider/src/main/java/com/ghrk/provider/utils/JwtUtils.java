@@ -20,11 +20,11 @@ import java.util.Date;
 @DubboService
 public class JwtUtils implements JwtUtilsInterface {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    @Value($"{globel.jwt.secret}")
+    @Value("${globel.jwt.secret}")
     private String secret;
-    @Value($"{globel.jwt.expire}")
+    @Value("${globel.jwt.expire}")
     private long expire;
-    @Value($"{globel.jwt.header}")
+    @Value("${globel.jwt.header}")
     private String header;
 
     /**
