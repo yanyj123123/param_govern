@@ -15,14 +15,16 @@ import java.util.Date;
 /**
  * jwt工具类
  */
-@ConfigurationProperties(prefix = "jwt")
+
 @Component
 @DubboService
 public class JwtUtils implements JwtUtilsInterface {
     private Logger logger = LoggerFactory.getLogger(getClass());
-
+    @Value($"globel.jwt.secret")
     private String secret;
+    @Value($"globel.jwt.secret")
     private long expire;
+    @Value($"globel.jwt.secret")
     private String header;
 
     /**
